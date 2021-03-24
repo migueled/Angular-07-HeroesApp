@@ -6,6 +6,7 @@ export class HeroeModel{
     vivo  :    boolean;
 
     constructor(){
+        //this.id       = '';
         this.nombre   = '';
         this.poder    = '';
         this.vivo     = true;
