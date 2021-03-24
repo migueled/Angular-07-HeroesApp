@@ -32,4 +32,28 @@ export class HeroesService {
 
         return this.http.put(`${ this.url }/heroes/${ heroe.id }.json`, heroeTemp);
     }
+
+    getHeroes(){
+        return this.http.get(`${ this.url }/heroes.json`).pipe(
+            //map( respuesta =>  this.crearArreglo( respuesta ) ) forma larga
+            map( this.crearArreglo )//forma corta
+        )
+    }
+
+    private crearArreglo( heroesObject: object ){
+        const heroes : HeroeModel[] = [];
+
+        if( heroesObject == null ){ return []; }
+
+        Object.keys( heroesObject ).forEach (
+            key => {
+                const heroe : HeroeModel = heroesObject[ key ];
+                heroe.id = key;
+
+                heroes.push( heroe );
+            }
+        );
+
+        return heroes;
+    }
 }
