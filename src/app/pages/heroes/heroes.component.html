@@ -22,7 +22,10 @@
                 <label class="badge badge-success" *ngIf="heroe.vivo">Vivo</label>
                 <label class="badge badge-danger" *ngIf="!heroe.vivo">KO</label>
             </td>
-            <td></td>
+            <td>
+                <button class="btn btn-info mr-1" [routerLink]="['/heroe', heroe.id]"><i class="fa fa-pen"></i></button>
+                <button class="btn btn-danger mr-1 "><i class="fa fa-trash"></i></button>
+            </td>
         </tr>
     </tbody>
 </table>

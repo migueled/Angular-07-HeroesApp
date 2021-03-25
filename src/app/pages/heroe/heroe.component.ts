@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
+
+import { Observable } from 'rxjs';
+
 import { HeroeModel } from '../../models/heroe.model';
 import { HeroesService } from '../../services/heroes.service';
+
 import Swal from 'sweetalert2';
-import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-heroe',
@@ -14,9 +18,19 @@ import { Observable } from 'rxjs';
 export class HeroeComponent implements OnInit {
     heroe : HeroeModel = new HeroeModel();
 
-    constructor( private heroesService: HeroesService ) { }
+    constructor( private heroesService: HeroesService,
+                 private route: ActivatedRoute) { }
 
     ngOnInit(): void {
+        const id = this.route.snapshot.paramMap.get('id');
+        if ( id !== 'nuevo') { 
+            this.heroesService.getHero( id ).subscribe(
+                (respuesta : HeroeModel ) => {
+                    this.heroe = respuesta;
+                    this.heroe.id = id;
+                }
+        );
+    }
     }
 
     save( formulario: NgForm ){
