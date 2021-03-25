@@ -3,7 +3,7 @@
 <div class="text-right">
     <button type="button" class="btn btn-primary" routerLink="/heroe/nuevo"><i class="fas fa-plus"></i>Agregar</button>
 </div>
-<table class="table table-striped mt-3">
+<table class="table table-striped mt-3 animated FadeIn faster" *ngIf="!cargando">
     <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
@@ -30,13 +30,13 @@
     </tbody>
 </table>
 
-<div class="alert alert-primary text-center mt-4" role="alert">
+<div class="alert alert-primary text-center mt-4 animated FadeIn faster" role="alert" *ngIf="cargando">
     <h4 class="alert-heading">Cargando</h4>
     <p><i class="fa fa-sync-alt fa-spin fa-2x"></i></p>
     <p class="mb-0">Espere por favor</p>
 </div>
 
-<div class="alert alert-warning text-center mt-4" role="alert">
+<div class="alert alert-warning text-center mt-4 animated FadeIn faster" role="alert" *ngIf="!cargando && heroes.length == 0">
     <h4 class="alert-heading">Cargando</h4>
     <p><i class="fa fa-exclamation fa-2x"></i></p>
     <p class="mb-0">Sin registros</p>
