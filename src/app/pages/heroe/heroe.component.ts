@@ -18,24 +18,23 @@ import Swal from 'sweetalert2';
 export class HeroeComponent implements OnInit {
     heroe : HeroeModel = new HeroeModel();
 
-    constructor( private heroesService: HeroesService,
-                 private route: ActivatedRoute) { }
+    constructor( private heroesService : HeroesService,
+                 private route : ActivatedRoute) { }
 
     ngOnInit(): void {
         const id = this.route.snapshot.paramMap.get('id');
         if ( id !== 'nuevo') { 
             this.heroesService.getHero( id ).subscribe(
                 (respuesta : HeroeModel ) => {
-                    this.heroe = respuesta;
-                    this.heroe.id = id;
+                    this.heroe     = respuesta;
+                    this.heroe.id  = id;
                 }
         );
     }
     }
 
-    save( formulario: NgForm ){
+    save( formulario : NgForm ){
         if( formulario.invalid ){
-            console.log('invalido');
             return ;
         }
         
@@ -52,7 +51,7 @@ export class HeroeComponent implements OnInit {
 
         if( this.heroe.id ){
             peticion = this.heroesService.actualizarHeroe( this.heroe );
-        }else{
+        } else {
             peticion = this.heroesService.crearHeroe( this.heroe );
         }
 

@@ -11,7 +11,7 @@ export class HeroesService {
 
     private url : string = 'https://agregar-54914.firebaseio.com';
 
-    constructor( private http:HttpClient ) {}
+    constructor( private http : HttpClient ) {}
 
     crearHeroe( heroe: HeroeModel ) {
         return this.http.post(`${ this.url }/heroes.json`, heroe)
@@ -23,7 +23,7 @@ export class HeroesService {
             );
     }
 
-    actualizarHeroe( heroe:HeroeModel ) {
+    actualizarHeroe( heroe : HeroeModel ) {
         const heroeTemp = {
             ...heroe
         };
@@ -33,7 +33,7 @@ export class HeroesService {
         return this.http.put(`${ this.url }/heroes/${ heroe.id }.json`, heroeTemp);
     }
 
-    getHeroes(){
+    getHeroes() {
         return this.http.get(`${ this.url }/heroes.json`).pipe(
             //map( respuesta =>  this.crearArreglo( respuesta ) ) forma larga
             map( this.crearArreglo ),//forma corta
@@ -41,7 +41,7 @@ export class HeroesService {
         )
     }
 
-    private crearArreglo( heroesObject: object ){
+    private crearArreglo( heroesObject : object ) {
         const heroes : HeroeModel[] = [];
 
         if( heroesObject == null ){ return []; }
@@ -58,11 +58,11 @@ export class HeroesService {
         return heroes;
     }
 
-    getHero( id: string ) {
+    getHero( id : string ) {
         return this.http.get(`${ this.url }/heroes/${ id }.json`);
     }
 
-    deleteHeroe( id: string ) {
+    deleteHeroe( id : string ) {
         return this.http.delete(`${ this.url }/heroes/${ id }.json`);
     }
 }

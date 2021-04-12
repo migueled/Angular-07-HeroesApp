@@ -14,17 +14,17 @@ export class HeroesComponent implements OnInit {
     heroes : HeroeModel[] = [];
     cargando = false; 
 
-    constructor( private heroesService: HeroesService ) { }
+    constructor( private heroesService : HeroesService ) { }
 
     ngOnInit(): void {
         this.cargando = true ;
         this.heroesService.getHeroes().subscribe( data => {
-            this.heroes = data
-            this.cargando = false;
+            this.heroes     = data;
+            this.cargando   = false;
         });
     }
 
-    deleteHeroe( heroe: HeroeModel , index:number ) {
+    deleteHeroe( heroe : HeroeModel , index : number ) {
 
         Swal.fire({
             title: 'Eliminar registro',
