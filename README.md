@@ -7,6 +7,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * Utilizaremos los servicios restful de Firebase
 * POST.
 * GET.
+* DELETE.
+* PUT.
 
 ## Development server
 
